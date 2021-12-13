@@ -12,16 +12,40 @@ function App() {
     }
   }, [])
 
-  const handleImageChange = (e) => {
-    setImgUrl(e.target.value)
-    window.history.replaceState("", "", updateURLParameter(window.location.href, "img", e.target.value))
-  }
+  const photoData = [
+    {
+      url: 'http://placekitten.com/408/287'
+    },
+    {
+      url: 'http://placekitten.com/200/138'
+    },
+    {
+      url: 'http://placekitten.com/200/287'
+    },
+  ]
 
   return (
     <div className="App">
-      <h1>React sliding puzzle</h1>
+      <h1>Sliding puzzle</h1>
+
+      <h3>Choose your image </h3>
+      <div className="image-list">
+        {photoData && photoData.map(item => {
+          return (
+          <div
+            key={item}
+            className="image-item"
+            style={{ backgroundImage: `url(${item.url})` }}
+            onClick={() =>{
+              setImgUrl(`${item.url}`)
+              window.history.replaceState("", "", updateURLParameter(window.location.href, "img", `${item.url}`))
+            }}/>
+          );
+        })}
+      </div>
+
       <Board imgUrl={imgUrl} />
-      <input value={imgUrl} onChange={handleImageChange} />
+
     </div>
   );
 }

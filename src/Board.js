@@ -43,6 +43,11 @@ function Board({ imgUrl }) {
 
   return (
     <>
+    {hasWon && isStarted && <div>You Win, well done! ⭐️</div>}
+    {!isStarted ?
+      (<button onClick={() => handleStartClick()}>Start game</button>) :
+      (<button onClick={() => handleShuffleClick()}>Restart game</button>)}
+
       <ul style={style} className="board">
         {tiles.map((tile, index) => (
           <Tile
@@ -56,10 +61,6 @@ function Board({ imgUrl }) {
           />
         ))}
       </ul>
-      {hasWon && isStarted && <div>Puzzle solved 🧠 🎉</div>}
-      {!isStarted ?
-        (<button onClick={() => handleStartClick()}>Start game</button>) :
-        (<button onClick={() => handleShuffleClick()}>Restart game</button>)}
     </>
   );
 }
