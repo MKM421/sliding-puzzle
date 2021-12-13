@@ -14,12 +14,15 @@ function App() {
 
   const photoData = [
     {
+      id: 0,
       url: 'http://placekitten.com/408/287'
     },
     {
+      id: 1,
       url: 'http://placekitten.com/200/138'
     },
     {
+      id: 2,
       url: 'http://placekitten.com/200/287'
     },
   ]
@@ -30,10 +33,11 @@ function App() {
 
       <h3>Choose your image </h3>
       <div className="image-list">
-        {photoData && photoData.map(item => {
+        {photoData && photoData.map((item, index) => {
           return (
           <div
-            key={item}
+            key={item.id}
+            index={index}
             className="image-item"
             style={{ backgroundImage: `url(${item.url})` }}
             onClick={() =>{
