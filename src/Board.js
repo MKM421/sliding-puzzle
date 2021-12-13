@@ -1,36 +1,36 @@
 import React, { useState } from "react";
 import Tile from "./Tile";
-import { TILE_COUNT, GRID_SIZE, BOARD_SIZE } from "./constants"
-import { canSwap, shuffle, swap, isSolved } from "./helpers"
+import { TILE_COUNT, GRID_SIZE, BOARD_SIZE } from "./constants";
+import { canSwap, shuffle, swap, isSolved } from "./helpers";
 
 function Board({ imgUrl }) {
   const [tiles, setTiles] = useState([...Array(TILE_COUNT).keys()]);
   const [isStarted, setIsStarted] = useState(false);
-  console.log('is started:', isStarted)
+  console.log('is started:', isStarted);
 
   const shuffleTiles = () => {
-    const shuffledTiles = shuffle(tiles)
+    const shuffledTiles = shuffle(tiles);
     setTiles(shuffledTiles);
   }
 
   const swapTiles = (tileIndex) => {
     if (canSwap(tileIndex, tiles.indexOf(tiles.length - 1))) {
       const swappedTiles = swap(tiles, tileIndex, tiles.indexOf(tiles.length - 1))
-      setTiles(swappedTiles)
+      setTiles(swappedTiles);
     }
   }
 
   const handleTileClick = (index) => {
-    swapTiles(index)
+    swapTiles(index);
   }
 
   const handleShuffleClick = () => {
-    shuffleTiles()
+    shuffleTiles();
   }
 
   const handleStartClick = () => {
-    shuffleTiles()
-    setIsStarted(true)
+    shuffleTiles();
+    setIsStarted(true);
   }
 
   const pieceWidth = Math.round(BOARD_SIZE / GRID_SIZE);
@@ -39,7 +39,7 @@ function Board({ imgUrl }) {
     width: BOARD_SIZE,
     height: BOARD_SIZE,
   };
-  const hasWon = isSolved(tiles)
+  const hasWon = isSolved(tiles);
 
   return (
     <>
@@ -63,6 +63,6 @@ function Board({ imgUrl }) {
       </ul>
     </>
   );
-}
+};
 
 export default Board;

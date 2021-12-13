@@ -1,7 +1,7 @@
 import React from "react";
 import { Motion, spring } from "react-motion";
 import { getMatrixPosition, getVisualPosition } from "./helpers";
-import { TILE_COUNT, GRID_SIZE, BOARD_SIZE } from "./constants"
+import { TILE_COUNT, GRID_SIZE, BOARD_SIZE } from "./constants";
 
 function Tile(props) {
   const { tile, index, width, height, handleTileClick, imgUrl } = props;
@@ -21,7 +21,7 @@ function Tile(props) {
   const motionStyle = {
     translateX: spring(visualPos.x),
     translateY: spring(visualPos.y)
-  }
+  };
 
   return (
     <Motion style={motionStyle}>
@@ -41,6 +41,6 @@ function Tile(props) {
       )}
     </Motion>
   );
-}
+};
 
 export default Tile;

@@ -1,4 +1,4 @@
-import { TILE_COUNT, GRID_SIZE } from "./constants"
+import { TILE_COUNT, GRID_SIZE } from "./constants";
 
 // Credits to https://codepen.io/unindented/pen/QNWdRQ
 export function isSolvable(tiles) {
@@ -9,7 +9,7 @@ export function isSolvable(tiles) {
     }
   }
   return Math.round(product) === 1;
-}
+};
 
 export function isSolved(tiles) {
   for (let i = 0, l = tiles.length; i < l; i++) {
@@ -18,12 +18,12 @@ export function isSolved(tiles) {
     }
   }
   return true;
-}
+};
 
 // Get the linear index from a row/col pair.
 export function getIndex(row, col) {
   return parseInt(row, 10) * GRID_SIZE + parseInt(col, 10);
-}
+};
 
 // Get the row/col pair from a linear index.
 export function getMatrixPosition(index) {
@@ -31,14 +31,14 @@ export function getMatrixPosition(index) {
     row: Math.floor(index / GRID_SIZE),
     col: index % GRID_SIZE,
   };
-}
+};
 
 export function getVisualPosition(row, col, width, height) {
   return {
     x: col * width,
     y: row * height,
   };
-}
+};
 
 export function shuffle(tiles) {
   const shuffledTiles = [
@@ -50,19 +50,19 @@ export function shuffle(tiles) {
   return isSolvable(shuffledTiles) && !isSolved(shuffledTiles)
     ? shuffledTiles
     : shuffle(shuffledTiles);
-}
+};
 
 export function canSwap(srcIndex, destIndex) {
   const { row: srcRow, col: srcCol } = getMatrixPosition(srcIndex);
   const { row: destRow, col: destCol } = getMatrixPosition(destIndex);
   return Math.abs(srcRow - destRow) + Math.abs(srcCol - destCol) === 1;
-}
+};
 
 export function swap(tiles, src, dest) {
   const tilesResult = [...tiles];
   [tilesResult[src], tilesResult[dest]] = [tilesResult[dest], tilesResult[src]];
   return tilesResult;
-}
+};
 
 export function updateURLParameter(url, param, paramVal) {
   var newAdditionalURL = "";
@@ -82,4 +82,4 @@ export function updateURLParameter(url, param, paramVal) {
 
   var rows_txt = temp + "" + param + "=" + paramVal;
   return baseURL + "?" + newAdditionalURL + rows_txt;
-}
+};
